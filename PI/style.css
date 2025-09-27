@@ -1,0 +1,36 @@
+body, html {height: 100%}
+
+body,h1,h2,h3,h4,h5,h6 {
+  font-family: "Amatic SC", sans-serif;
+  position: relative;
+}
+.menu {
+  display: none
+}
+
+body{
+  position: absolute;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+}
+
+.bgimg {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('img/wallpaper.jpg');
+  background-position: center;
+  min-height: 100vh;
+  max-width: 100%;
+}
+
+
+
+
