@@ -1,38 +1,58 @@
-body, html {height: 100%}
-
-body,h1,h2,h3,h4,h5,h6 {
+/* Reset básico */
+body, html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
   font-family: "Amatic SC", sans-serif;
-  position: relative;
-}
-.menu {
-  display: none
 }
 
-body{
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: space-around; 
-   position: absolute;
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    z-index: -1;
-}
-
+/* Imagem de fundo */
 .bgimg {
-  background-repeat: no-repeat;
-  background-size: cover;
   background-image: url('img/wallpaper.jpg');
   background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
   min-height: 100vh;
-  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* você pode mudar para center se quiser centralizar verticalmente */
+  padding: 20px;
+  box-sizing: border-box;
 }
+
+/* Menu (escondido por enquanto) */
+.menu {
+  display: none;
+}
+
+/* Estilo para itens do cardápio */
+.item {
+  background: rgba(255, 255, 255, 0.8); /* leve transparência para destacar do fundo */
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px;
+  width: 300px; /* padrão para desktop */
+  text-align: center;
+}
+
+/* Responsividade para celular */
+@media (max-width: 600px) {
+  .item {
+    width: 90%; /* ocupa quase toda a tela do celular */
+    font-size: 1.2rem; /* aumenta um pouco a leitura */
+  }
+}
+
+/* Responsividade para tablets */
+@media (max-width: 900px) {
+  .item {
+    width: 45%; /* dois itens por linha */
+  }
+}
+
+
 
 
 
