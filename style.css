@@ -1,12 +1,16 @@
 /* Reset básico */
-body, html {
-  height: 100%;
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
   font-family: "Amatic SC", sans-serif;
 }
 
-/* Imagem de fundo */
+/* Fundo da página */
 .bgimg {
   background-image: url('img/wallpaper.jpg');
   background-position: center;
@@ -17,44 +21,68 @@ body, html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start; /* você pode mudar para center se quiser centralizar verticalmente */
+  justify-content: flex-start;
   padding: 20px;
-  box-sizing: border-box;
 }
 
-/* Menu (escondido por enquanto) */
+/* Menu (se for necessário) */
 .menu {
   display: none;
 }
 
-/* Estilo para itens do cardápio */
-.item {
-  background: rgba(255, 255, 255, 0.8); /* leve transparência para destacar do fundo */
-  border-radius: 10px;
-  padding: 15px;
-  margin: 10px;
-  width: 300px; /* padrão para desktop */
-  text-align: center;
+/* Container do cardápio */
+.cardapio {
+  display: flex;
+  flex-wrap: wrap; /* permite quebrar linha em telas pequenas */
+  justify-content: center;
+  gap: 20px; /* espaçamento entre os itens */
+  width: 100%;
+  max-width: 1200px; /* limite de largura para desktop */
 }
 
-/* Responsividade para celular */
-@media (max-width: 600px) {
-  .item {
-    width: 90%; /* ocupa quase toda a tela do celular */
-    font-size: 1.2rem; /* aumenta um pouco a leitura */
-  }
+/* Itens do cardápio */
+.item {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  flex: 1 1 250px; /* cresce e encolhe conforme a tela, mínimo 250px */
+  max-width: 300px; /* limite de largura */
+  word-wrap: break-word; /* evita que o texto quebre fora da caixa */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Títulos e textos internos */
+.item h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.item p {
+  font-size: 1.2rem;
+  line-height: 1.4;
 }
 
 /* Responsividade para tablets */
 @media (max-width: 900px) {
   .item {
-    width: 45%; /* dois itens por linha */
+    flex: 1 1 45%; /* dois itens por linha */
+    max-width: none;
   }
 }
 
+/* Responsividade para celulares */
+@media (max-width: 600px) {
+  .item {
+    flex: 1 1 90%; /* ocupa quase toda a tela */
+    padding: 15px;
+  }
 
+  .item h2 {
+    font-size: 1.5rem;
+  }
 
-
-
-
-
+  .item p {
+    font-size: 1rem;
+  }
+}
