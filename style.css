@@ -1,16 +1,25 @@
+/* ========================================================= */
+/* SEÇÃO 1: ESTILOS PADRÃO (SEU CÓDIGO ORIGINAL) */
+/* ========================================================= */
 body, html {
-  height: 100%}
+    height: 100%
+}
 
 body,h1,h2,h3,h4,h5,h6 {
-  font-family: "Amatic SC", sans-serif;
-  position: relative;
+    font-family: "Amatic SC", sans-serif;
+    position: relative;
 }
+
+/* Nota: Se .menu é o seu menu de navegação, display: none fará ele sumir */
+/* Se for o container de todo o cardápio, pode ser a causa do problema de visualização */
 .menu {
-  display: none
+    display: none
 }
 
 body{
-  position: relative;
+    position: relative;
+    /* content: ""; é usado em pseudo-elementos como ::before ou ::after, não diretamente no body. 
+       Mantenha, mas é uma sintaxe mais usada para camadas. */
     content: "";
     top: 0;
     left: 0;
@@ -23,10 +32,65 @@ body{
 }
 
 .bgimg {
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-image: url('img/wallpaper.jpg');
-  background-position: center;
-  min-height: 100%;
-  max-width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('img/wallpaper.jpg');
+    background-position: center;
+    min-height: 100%;
+    max-width: 100%;
+}
+
+
+/* ========================================================= */
+/* SEÇÃO 2: ESTILOS DE RESPONSIVIDADE (MEDIA QUERIES) */
+/* Esses estilos corrigirão a visualização 'apertada' no celular. */
+/* ========================================================= */
+
+@media (max-width: 600px) {
+
+    /* Ajuste de Títulos e Textos para Celulares */
+    h1 {
+        font-size: 3.5rem; /* Reduz o tamanho do H1 */
+    }
+    h2 {
+        font-size: 2.5rem; /* Reduz o tamanho do H2 */
+    }
+    h3 {
+        font-size: 1.5rem; /* Reduz o tamanho do H3 dos itens */
+    }
+    
+    /* ---------------------------------------------------------------- */
+    /* *** AJUSTE PRINCIPAL DO LAYOUT DOS ITENS DO CARDÁPIO *** */
+    /* ---------------------------------------------------------------- */
+
+    /* Exemplo: Container principal do cardápio (se estiver usando Grid ou Flex) */
+    .container-cardapio {
+        padding: 10px; /* Reduz o padding geral do container */
+        /* Se você usa Grid no desktop (ex: 3 colunas), mude para uma coluna */
+        /* display: grid; */
+        /* grid-template-columns: 1fr; */
+    }
+
+    /* Exemplo: Cada item individual do cardápio */
+    .item-cardapio {
+        /* Garante que os elementos se empilhem */
+        display: flex; 
+        flex-direction: column; /* FORÇA os elementos (ícone, texto) a ficarem na vertical */
+        align-items: center; /* Centraliza o conteúdo horizontalmente */
+        text-align: center; /* Centraliza o texto */
+        padding: 15px 5px; /* Ajusta o padding interno */
+        margin-bottom: 20px;
+    }
+
+    /* Exemplo: Ajuste dos Ícones ou Imagens nos Itens */
+    .icone-item, .imagem-prato {
+        width: 50px; /* Reduz o tamanho do ícone/imagem */
+        height: 50px;
+        margin-bottom: 5px; /* Adiciona um pequeno espaçamento abaixo do ícone */
+    }
+
+    /* Ajuste de parágrafos/descrições (se houver) */
+    .item-descricao {
+        font-size: 0.9rem; /* Reduz a fonte de descrições para caber melhor */
+    }
 }
