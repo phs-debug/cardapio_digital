@@ -9,7 +9,10 @@ body,h1,h2,h3,h4,h5,h6 {
 }
 
 body{
-  position: absolute;
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-around; 
+   position: absolute;
     content: "";
     position: absolute;
     top: 0;
@@ -30,6 +33,7 @@ body{
   min-height: 100vh;
   max-width: 100%;
 }
+
 
 
 
