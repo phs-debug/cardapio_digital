@@ -1,6 +1,5 @@
 /* ========================================================= */
 /* SEÇÃO 1: ESTILOS PADRÃO (SEU CÓDIGO ORIGINAL) */
-/* Aplicado a todas as telas (Desktop, Tablet, Celular) */
 /* ========================================================= */
 body, html {
     height: 100%
@@ -11,14 +10,14 @@ body,h1,h2,h3,h4,h5,h6 {
     position: relative;
 }
 
-/* Nota: Se .menu é o seu menu de navegação, display: none fará ele sumir */
+/* O W3.CSS usa a classe .menu para esconder o conteúdo da aba, mantenha assim */
 .menu {
     display: none
 }
 
 body{
     position: relative;
-    content: "";
+    content: ""; /* Mantido, embora mais usado em ::before/::after */
     top: 0;
     left: 0;
     right: 0;
@@ -27,6 +26,8 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
     z-index: -1;
+    /* Correção: Adicionar overflow-x: hidden para evitar barra de rolagem horizontal */
+    overflow-x: hidden; 
 }
 
 .bgimg {
@@ -40,64 +41,66 @@ body{
 
 
 /* ========================================================= */
-/* SEÇÃO 2: MEDIA QUERY - ESTILOS PARA CELULARES */
-/* Aplicado APENAS em telas com largura máxima de 600px */
+/* SEÇÃO 2: MEDIA QUERY - ESTILOS PARA CELULARES (MAX-WIDTH: 600PX) */
+/* Corrigindo os botões "espremidos" e vazamento */
 /* ========================================================= */
 
 @media (max-width: 600px) {
 
-    /* --- GERAL: FONTES E PADDINGS --- */
-    h1 {
-        font-size: 3.5rem; 
-    }
-    h2 {
-        font-size: 2.5rem;
-    }
-    h3 {
-        font-size: 1.5rem; 
-    }
-    .container-cardapio {
-        padding: 10px; 
-    }
-    
-    /* --- ITENS DO CARDÁPIO: Empilhamento Vertical --- */
-    /* Exemplo: Se seus itens estavam lado a lado, force a coluna */
-    .item-cardapio {
-        display: flex; 
-        flex-direction: column; /* Coloca ícone/imagem e texto na vertical */
-        align-items: center; /* Centraliza horizontalmente */
-        text-align: center; 
-        width: 100%; 
-        padding: 15px 5px; 
-        margin-bottom: 20px;
+    /* --- 1. CORREÇÃO DOS BOTÕES DE CATEGORIA (BURGUERS, ESPETINHOS, etc.) --- */
+    /* A classe .tablink está nos DIVs dentro do w3-row w3-center. */
+    .tablink {
+        /* Remove o padding excessivo do w3-padding-large do W3.CSS */
+        padding: 8px 5px !important; 
+        
+        /* Reduz o tamanho da fonte, que está muito grande (w3-xlarge) */
+        font-size: 1.2rem !important; 
+        line-height: 1.2;
     }
 
-    /* Exemplo: Redução do tamanho de ícones/imagens */
-    .icone-item, .imagem-prato {
-        width: 50px; 
-        height: 50px;
-        margin-bottom: 5px; 
+    /* O container w3-row w3-center com w3-col s4 fica muito apertado. 
+       No celular, forçamos os itens a ocuparem 50% ou 100% para evitar o esmagamento. */
+    .w3-col.s4 {
+        /* Forçamos a coluna a ser maior (50% em vez de 33%) ou 100% para empilhar. */
+        /* Escolhemos 50% para ter duas colunas, o que ainda é compacto. */
+        width: 50% !important; 
     }
     
-    /* --- BOTÕES: Correção do Vazameto de Texto --- */
-
-    /* Exemplo: Ajuste no container de botões (se houver mais de um) */
-    .container-botoes {
-        display: flex;
-        flex-direction: column; /* Empilha os botões um abaixo do outro */
-        gap: 10px; 
+    /* Para telas ainda menores (ex: abaixo de 400px), força 100% para empilhar */
+    @media (max-width: 400px) {
+        .w3-col.s4 {
+            width: 100% !important;
+            float: none !important; /* Desabilita o float do W3.CSS para empilhar */
+        }
+    }
+    
+    /* --- 2. CORREÇÃO DOS BOTÕES "ADICIONAR AO CARRINHO" (.carrinho) --- */
+    .carrinho {
+        /* Faz o botão ocupar a largura total do item no celular */
         width: 100%;
-        align-items: center; 
+        /* Reduz a margem/padding que pode estar causando vazamento */
+        padding: 10px 0; 
+        font-size: 1rem;
+        margin-top: 10px; /* Adiciona um espaço acima para separar do texto */
+        box-sizing: border-box; /* Garante que padding e borda não aumentem o width */
     }
     
-    /* Exemplo: Ajuste do botão individual */
-    .botao-cardapio {
-        /* Garante que o botão use a largura total (ou quase) */
-        width: 95%; 
-        max-width: 300px; /* Evita que fique muito largo em alguns celulares */
-        
-        /* Reduz o preenchimento interno para dar espaço ao texto */
-        padding: 10px 15px; 
-        
-        /* Reduz o tamanho da fonte */
-        font-size: 1
+    /* --- 3. CORREÇÃO GERAL DOS ITENS DO CARDÁPIO --- */
+    /* Garante que o container do item tenha padding adequado */
+    .w3-container.menu.w3-padding-32 {
+        padding: 16px !important; /* Reduz o padding interno do container de menu */
+    }
+    
+    /* Ajusta o preço (span) e as tags de destaque (vermelhas) */
+    h1 b, h1 span {
+        /* Garante que o preço e o título possam ficar em linhas separadas se esmagados */
+        display: block; 
+        font-size: 1.4rem;
+        line-height: 1.2;
+    }
+
+    /* Reduz o tamanho da descrição */
+    .w3-text-grey {
+        font-size: 0.9rem;
+    }
+}
