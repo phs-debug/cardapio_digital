@@ -1,5 +1,6 @@
 /* ========================================================= */
 /* SEÇÃO 1: ESTILOS PADRÃO (SEU CÓDIGO ORIGINAL) */
+/* Aplicado a todas as telas (Desktop, Tablet, Celular) */
 /* ========================================================= */
 body, html {
     height: 100%
@@ -11,15 +12,12 @@ body,h1,h2,h3,h4,h5,h6 {
 }
 
 /* Nota: Se .menu é o seu menu de navegação, display: none fará ele sumir */
-/* Se for o container de todo o cardápio, pode ser a causa do problema de visualização */
 .menu {
     display: none
 }
 
 body{
     position: relative;
-    /* content: ""; é usado em pseudo-elementos como ::before ou ::after, não diretamente no body. 
-       Mantenha, mas é uma sintaxe mais usada para camadas. */
     content: "";
     top: 0;
     left: 0;
@@ -42,55 +40,64 @@ body{
 
 
 /* ========================================================= */
-/* SEÇÃO 2: ESTILOS DE RESPONSIVIDADE (MEDIA QUERIES) */
-/* Esses estilos corrigirão a visualização 'apertada' no celular. */
+/* SEÇÃO 2: MEDIA QUERY - ESTILOS PARA CELULARES */
+/* Aplicado APENAS em telas com largura máxima de 600px */
 /* ========================================================= */
 
 @media (max-width: 600px) {
 
-    /* Ajuste de Títulos e Textos para Celulares */
+    /* --- GERAL: FONTES E PADDINGS --- */
     h1 {
-        font-size: 3.5rem; /* Reduz o tamanho do H1 */
+        font-size: 3.5rem; 
     }
     h2 {
-        font-size: 2.5rem; /* Reduz o tamanho do H2 */
+        font-size: 2.5rem;
     }
     h3 {
-        font-size: 1.5rem; /* Reduz o tamanho do H3 dos itens */
+        font-size: 1.5rem; 
+    }
+    .container-cardapio {
+        padding: 10px; 
     }
     
-    /* ---------------------------------------------------------------- */
-    /* *** AJUSTE PRINCIPAL DO LAYOUT DOS ITENS DO CARDÁPIO *** */
-    /* ---------------------------------------------------------------- */
-
-    /* Exemplo: Container principal do cardápio (se estiver usando Grid ou Flex) */
-    .container-cardapio {
-        padding: 10px; /* Reduz o padding geral do container */
-        /* Se você usa Grid no desktop (ex: 3 colunas), mude para uma coluna */
-        /* display: grid; */
-        /* grid-template-columns: 1fr; */
-    }
-
-    /* Exemplo: Cada item individual do cardápio */
+    /* --- ITENS DO CARDÁPIO: Empilhamento Vertical --- */
+    /* Exemplo: Se seus itens estavam lado a lado, force a coluna */
     .item-cardapio {
-        /* Garante que os elementos se empilhem */
         display: flex; 
-        flex-direction: column; /* FORÇA os elementos (ícone, texto) a ficarem na vertical */
-        align-items: center; /* Centraliza o conteúdo horizontalmente */
-        text-align: center; /* Centraliza o texto */
-        padding: 15px 5px; /* Ajusta o padding interno */
+        flex-direction: column; /* Coloca ícone/imagem e texto na vertical */
+        align-items: center; /* Centraliza horizontalmente */
+        text-align: center; 
+        width: 100%; 
+        padding: 15px 5px; 
         margin-bottom: 20px;
     }
 
-    /* Exemplo: Ajuste dos Ícones ou Imagens nos Itens */
+    /* Exemplo: Redução do tamanho de ícones/imagens */
     .icone-item, .imagem-prato {
-        width: 50px; /* Reduz o tamanho do ícone/imagem */
+        width: 50px; 
         height: 50px;
-        margin-bottom: 5px; /* Adiciona um pequeno espaçamento abaixo do ícone */
+        margin-bottom: 5px; 
     }
+    
+    /* --- BOTÕES: Correção do Vazameto de Texto --- */
 
-    /* Ajuste de parágrafos/descrições (se houver) */
-    .item-descricao {
-        font-size: 0.9rem; /* Reduz a fonte de descrições para caber melhor */
+    /* Exemplo: Ajuste no container de botões (se houver mais de um) */
+    .container-botoes {
+        display: flex;
+        flex-direction: column; /* Empilha os botões um abaixo do outro */
+        gap: 10px; 
+        width: 100%;
+        align-items: center; 
     }
-}
+    
+    /* Exemplo: Ajuste do botão individual */
+    .botao-cardapio {
+        /* Garante que o botão use a largura total (ou quase) */
+        width: 95%; 
+        max-width: 300px; /* Evita que fique muito largo em alguns celulares */
+        
+        /* Reduz o preenchimento interno para dar espaço ao texto */
+        padding: 10px 15px; 
+        
+        /* Reduz o tamanho da fonte */
+        font-size: 1
