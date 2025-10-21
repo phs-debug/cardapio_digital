@@ -168,4 +168,175 @@ body{
     background-position: center;
     min-height: 100%;
     max-width: 100%;
+}body, html {
+    height: 100%
 }
+
+/* -------------------------------------------------------------------------- */
+/* CORREÇÃO 1: FONT-FAMILY (Usando Lora, uma fonte web segura e importada) */
+/* -------------------------------------------------------------------------- */
+body,h1,h2,h3,h4,h5,h6 {
+    /* Usando Lora como primeira opção e Georgia/serif como fallback */
+    font-family: 'Lora', Georgia, serif; 
+    position: relative;
+}
+
+/* O W3.CSS usa a classe .menu para esconder o conteúdo da aba, mantenha assim */
+.menu {
+    display: none
+}
+
+body{
+    position: relative;
+    content: ""; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+    /* Correção: Adicionar overflow-x: hidden para evitar barra de rolagem horizontal */
+    overflow-x: hidden; 
+}
+
+.bgimg {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('img/wallpaper.jpg');
+    background-position: center;
+    min-height: 100%;
+    max-width: 100%;
+}
+
+/* Definição de estilo base para o botão (exemplo, ajuste o seu se necessário) */
+/* Se o botão tiver padding e largura fixos, remova para que a media query funcione bem */
+#botão {
+    padding: 15px 30px; /* Padding padrão para desktop */
+    /* Adicione seus outros estilos aqui (cor, fundo, borda, etc.) */
+}
+
+
+/* ========================================================= */
+/* SEÇÃO 2: MEDIA QUERY - ESTILOS PARA CELULARES (MAX-WIDTH: 600PX) */
+/* ========================================================= */
+
+@media (max-width: 600px) {
+
+    /* -------------------------------------------------------------------------- */
+    /* CORREÇÃO CRÍTICA 2: BOTÃO PRINCIPAL "CLIQUE PARA VER O CARDÁPIO" */
+    /* -------------------------------------------------------------------------- */
+    #botão {
+        /* Garante que o padding e a borda não causem vazamento */
+        box-sizing: border-box !important; 
+        
+        /* Ocupa 90% da largura do contêiner para deixar margens */
+        width: 90% !important; 
+        
+        /* Centraliza o botão */
+        margin: 10px auto !important; 
+        
+        /* FORÇA a redução do padding horizontal (lateral) que está causando o vazamento */
+        /* Mantém o padding vertical (15px) e reduz o lateral para 10px */
+        padding: 15px 10px !important; 
+        
+        /* Reduz o tamanho da fonte (w3-xxlarge é grande demais) */
+        font-size: 1.2rem !important; 
+        
+        /* Permite que o texto quebre em várias linhas se necessário */
+        white-space: normal !important; 
+        
+        /* Garante que o elemento seja tratado como bloco para o 'margin: auto' funcionar */
+        display: block !important; 
+    }
+    
+    /* --- 1. CORREÇÃO DOS BOTÕES DE CATEGORIA (BURGUERS, ESPETINHOS, etc.) --- */
+    /* ... (Mantenha o restante do seu CSS aqui) ... */
+
+    .tablink {
+        padding: 8px 5px !important;  
+        font-size: 1.2rem !important;  
+        line-height: 1.2;
+    }
+
+    .w3-col.s4 {
+        width: 50% !important;  
+    }
+        
+    /* Para telas ainda menores (ex: abaixo de 400px), força 100% para empilhar */
+    @media (max-width: 400px) {
+        .w3-col.s4 {
+            width: 100% !important;
+            float: none !important; 
+        }
+    }
+        
+    /* --- 2. CORREÇÃO DOS BOTÕES "ADICIONAR AO CARRINHO" (.carrinho) --- */
+    .carrinho {
+        width: 100%;
+        padding: 10px 0;  
+        font-size: 1rem;
+        margin-top: 10px; 
+        box-sizing: border-box; 
+    }
+        
+    /* --- 3. CORREÇÃO GERAL DOS ITENS DO CARDÁPIO --- */
+    .w3-container.menu.w3-padding-32 {
+        padding: 16px !important; 
+    }
+        
+    /* Ajusta o preço (span) e as tags de destaque (vermelhas) */
+    h1 b, h1 span {
+        display: block;  
+        font-size: 1.4rem;
+        line-height: 1.2;
+    }
+
+    /* Reduz o tamanho da descrição */
+    .w3-text-grey {
+        font-size: 0.9rem;
+    }
+}
+
+/* O resto do seu CSS (body, .bgimg, etc.) fica fora do media query */
+/* -------------------------------------------------------------------------- */
+/* CORREÇÃO 1: FONT-FAMILY (Usando Lora, uma fonte web segura e importada) */
+/* -------------------------------------------------------------------------- */
+body,h1,h2,h3,h4,h5,h6 {
+    font-family: 'Lora', Georgia, serif; 
+    position: relative;
+}
+
+body, html {
+    height: 100%
+}
+
+/* O W3.CSS usa a classe .menu para esconder o conteúdo da aba, mantenha assim */
+.menu {
+    display: none
+}
+
+body{
+    position: relative;
+    content: ""; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+    overflow-x: hidden; 
+}
+
+.bgimg {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('img/wallpaper.jpg');
+    background-position: center;
+    min-height: 100%;
+    max-width: 100%;
+}
+
