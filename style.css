@@ -1,12 +1,13 @@
-/* ========================================================= */
-/* SEÇÃO 1: ESTILOS PADRÃO (SEU CÓDIGO ORIGINAL) */
-/* ========================================================= */
 body, html {
     height: 100%
 }
 
+/* -------------------------------------------------------------------------- */
+/* CORREÇÃO 1: FONT-FAMILY (Usando Lora, uma fonte web segura e importada) */
+/* -------------------------------------------------------------------------- */
 body,h1,h2,h3,h4,h5,h6 {
-    font-family: 'Lora', Georgia, serif;
+    /* Usando Lora como primeira opção e Georgia/serif como fallback */
+    font-family: 'Lora', Georgia, serif; 
     position: relative;
 }
 
@@ -17,7 +18,7 @@ body,h1,h2,h3,h4,h5,h6 {
 
 body{
     position: relative;
-    content: ""; /* Mantido, embora mais usado em ::before/::after */
+    content: ""; 
     top: 0;
     left: 0;
     right: 0;
@@ -39,33 +40,50 @@ body{
     max-width: 100%;
 }
 
+/* Definição de estilo base para o botão (exemplo, ajuste o seu se necessário) */
+/* Se o botão tiver padding e largura fixos, remova para que a media query funcione bem */
+#botao-cardapio {
+    padding: 15px 30px; /* Padding padrão para desktop */
+    /* Adicione seus outros estilos aqui (cor, fundo, borda, etc.) */
+}
+
 
 /* ========================================================= */
 /* SEÇÃO 2: MEDIA QUERY - ESTILOS PARA CELULARES (MAX-WIDTH: 600PX) */
-/* Corrigindo os botões "espremidos" e vazamento */
 /* ========================================================= */
 
 @media (max-width: 600px) {
+    
+    /* -------------------------------------------------------------------------- */
+    /* CORREÇÃO 2: BOTÃO PRINCIPAL "CLIQUE PARA VER O CARDÁPIO" */
+    /* -------------------------------------------------------------------------- */
+    #botao-cardapio {
+        /* Garante que o padding e a borda não causem vazamento (essencial) */
+        box-sizing: border-box; 
+        
+        /* Ocupa 90% da largura, deixando margem para as laterais */
+        width: 90%; 
+        
+        /* Transforma em bloco e centraliza o botão */
+        display: block; 
+        margin: 10px auto; /* 10px em cima/baixo, centralizado nas laterais */
+        
+        /* Ajusta o padding para telas menores se necessário */
+        padding: 15px 10px; 
+    }
 
     /* --- 1. CORREÇÃO DOS BOTÕES DE CATEGORIA (BURGUERS, ESPETINHOS, etc.) --- */
     /* A classe .tablink está nos DIVs dentro do w3-row w3-center. */
     .tablink {
-        /* Remove o padding excessivo do w3-padding-large do W3.CSS */
-        padding: 8px 5px !important; 
-        
-        /* Reduz o tamanho da fonte, que está muito grande (w3-xlarge) */
-        font-size: 1.2rem !important; 
+        padding: 8px 5px !important;  
+        font-size: 1.2rem !important;  
         line-height: 1.2;
     }
 
-    /* O container w3-row w3-center com w3-col s4 fica muito apertado. 
-       No celular, forçamos os itens a ocuparem 50% ou 100% para evitar o esmagamento. */
     .w3-col.s4 {
-        /* Forçamos a coluna a ser maior (50% em vez de 33%) ou 100% para empilhar. */
-        /* Escolhemos 50% para ter duas colunas, o que ainda é compacto. */
-        width: 50% !important; 
+        width: 50% !important;  
     }
-    
+        
     /* Para telas ainda menores (ex: abaixo de 400px), força 100% para empilhar */
     @media (max-width: 400px) {
         .w3-col.s4 {
@@ -73,28 +91,24 @@ body{
             float: none !important; /* Desabilita o float do W3.CSS para empilhar */
         }
     }
-    
+        
     /* --- 2. CORREÇÃO DOS BOTÕES "ADICIONAR AO CARRINHO" (.carrinho) --- */
     .carrinho {
-        /* Faz o botão ocupar a largura total do item no celular */
         width: 100%;
-        /* Reduz a margem/padding que pode estar causando vazamento */
-        padding: 10px 0; 
+        padding: 10px 0;  
         font-size: 1rem;
-        margin-top: 10px; /* Adiciona um espaço acima para separar do texto */
-        box-sizing: border-box; /* Garante que padding e borda não aumentem o width */
+        margin-top: 10px; 
+        box-sizing: border-box; 
     }
-    
+        
     /* --- 3. CORREÇÃO GERAL DOS ITENS DO CARDÁPIO --- */
-    /* Garante que o container do item tenha padding adequado */
     .w3-container.menu.w3-padding-32 {
-        padding: 16px !important; /* Reduz o padding interno do container de menu */
+        padding: 16px !important; 
     }
-    
+        
     /* Ajusta o preço (span) e as tags de destaque (vermelhas) */
     h1 b, h1 span {
-        /* Garante que o preço e o título possam ficar em linhas separadas se esmagados */
-        display: block; 
+        display: block;  
         font-size: 1.4rem;
         line-height: 1.2;
     }
@@ -104,13 +118,3 @@ body{
         font-size: 0.9rem;
     }
 }
-
-
-
-
-
-
-
-
-
-
