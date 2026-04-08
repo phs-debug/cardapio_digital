@@ -1,36 +1,26 @@
 let carrinho = [];
 
-// ----------------------
-// FUNÇÕES DO W3.CSS PARA O MENU DE ABAS (GLOBAL)
-// ----------------------
 function openMenu(evt, menuName) {
     var i, x, tablinks;
     
-    // Oculta todas as seções de menu
     x = document.getElementsByClassName("menu");
     for (i = 0; i < x.length; i++) {
         x[i].style.display = "none";
     }
     
-    // Remove o destaque (w3-red) de todos os botões de aba
     tablinks = document.getElementsByClassName("tablink");
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
     }
     
-    // Mostra a aba clicada (se for o primeiro clique, o evento abrirá a seção)
     document.getElementById(menuName).style.display = "block";
     
-    // Adiciona o destaque "w3-red" ao botão clicado
     if (evt) evt.currentTarget.className += " w3-red";
 }
 
-// REMOVIDA A LINHA: openMenu(null, 'burguers');
-// O menu agora carrega fechado por padrão.
-
 
 // ----------------------
-// FUNÇÕES DE CÁLCULO E MANIPULAÇÃO DO CARRINHO
+// CARRINHO
 // ----------------------
 
 function calcularTotal() {
@@ -88,7 +78,6 @@ function atualizarUIcarrinho() {
         carrinhoFlutuante.style.display = 'block';
     }
 
-    // Atualiza o MODAL DETALHADO
     listaCarrinho.innerHTML = ''; 
     
     carrinho.forEach((item, index) => {
@@ -119,11 +108,12 @@ function atualizarUIcarrinho() {
 
 
 // ----------------------
-// LISTENERS DE EVENTOS (Inicialização - Carrega após o DOM)
+// EVENTOS (DOM CARREGADO)
 // ----------------------
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Ligar o botão "Adicionar" de cada item do menu
+
+    // Adicionar ao carrinho
     document.querySelectorAll('.carrinho').forEach(button => {
         button.addEventListener('click', (event) => {
             const itemCard = event.target.closest('.item-card');
@@ -136,22 +126,74 @@ document.addEventListener('DOMContentLoaded', () => {
 
             adicionarAoCarrinho(itemData);
         });
+        // botão para mostrar opções de pagamento
+document.getElementById('btn-pagamento').addEventListener('click', () => {
+    document.getElementById('pagamento-opcoes').style.display = 'block';
+});
     });
     
-    // 2. Ligar o botão "Ver Carrinho" da barra flutuante para abrir o modal
+    // Abrir carrinho
     document.getElementById('btn-ver-carrinho').addEventListener('click', () => {
-        document.getElementById('carrinho-modal').style.display = 'block';
-    });
+    document.getElementById('carrinho-modal').style.display = 'block';
+
+    // reset tudo
+    document.getElementById('btn-finalizar-pedido').style.display = 'none';
+    document.getElementById('pagamento-opcoes').style.display = 'none';
+
+    document.querySelectorAll('input[name="pagamento"]').forEach(r => r.checked = false);
+});
     
-    // 3. Ligar o botão "Fechar e Continuar Comprando" do modal
+    // Fechar carrinho
     document.getElementById('btn-fechar-modal').addEventListener('click', () => {
         document.getElementById('carrinho-modal').style.display = 'none';
     });
     
-    // 4. Fechar o modal clicando na área escura (fundo)
+    // Fechar clicando fora
     document.getElementById('carrinho-modal').addEventListener('click', (event) => {
         if (event.target.id === 'carrinho-modal') {
              document.getElementById('carrinho-modal').style.display = 'none';
         }
     });
+
+    // Mostrar botão finalizar ao escolher pagamento
+    const radiosPagamento = document.querySelectorAll('input[name="pagamento"]');
+    const btnFinalizar = document.getElementById('btn-finalizar-pedido');
+
+    radiosPagamento.forEach(radio => {
+        radio.addEventListener('change', () => {
+            btnFinalizar.style.display = 'block';
+        });
+    });
+
+    // Finalizar pedido
+    document.getElementById('btn-finalizar-pedido').addEventListener('click', () => {
+
+        const pagamentoSelecionado = document.querySelector('input[name="pagamento"]:checked');
+
+        if (!pagamentoSelecionado) {
+            alert("Selecione uma forma de pagamento!");
+            return;
+        }
+
+        document.getElementById('carrinho-modal').style.display = 'none';
+        document.getElementById('confirmacao-modal').style.display = 'block';
+
+        carrinho = [];
+        atualizarUIcarrinho();
+    });
+
+});
+
+// BOTÃO OK (CONFIRMAÇÃO)
+document.getElementById('btn-fechar-confirmacao').addEventListener('click', () => {
+
+    // fecha o modal
+    document.getElementById('confirmacao-modal').style.display = 'none';
+
+    // rola a tela pro topo (efeito mais profissional)
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+
 });
