@@ -6,7 +6,7 @@ function openMenu(evt, menuName) {
     x = document.getElementsByClassName("menu");
     for (i = 0; i < x.length; i++) {
         x[i].style.display = "none";
-    }
+    } 
 
     tablinks = document.getElementsByClassName("tablink");
     for (i = 0; i < tablinks.length; i++) {
