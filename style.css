@@ -2,9 +2,6 @@ body, html {
     height: 100%
 }
 
-/* -------------------------------------------------------------------------- */
-/* CORREÇÃO 1: FONT-FAMILY (Usando Lora, uma fonte web segura e importada) */
-/* -------------------------------------------------------------------------- */
 body,h1,h2,h3,h4,h5,h6 {
     /* Usando Lora como primeira opção e Georgia/serif como fallback */
     font-family: 'Lora', Georgia, serif; 
@@ -129,43 +126,30 @@ body{
     }
 }
 
-/* O resto do seu CSS (body, .bgimg, etc.) fica fora do media query */
-/* -------------------------------------------------------------------------- */
-/* CORREÇÃO 1: FONT-FAMILY (Usando Lora, uma fonte web segura e importada) */
-/* -------------------------------------------------------------------------- */
-body,h1,h2,h3,h4,h5,h6 {
-    font-family: 'Lora', Georgia, serif; 
-    position: relative;
+.opcao-pagamento {
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #f9f9f9;
+    font-weight: bold;
 }
 
-body, html {
-    height: 100%
+.opcao-pagamento {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #f9f9f9;
+    cursor: pointer;
 }
 
-/* O W3.CSS usa a classe .menu para esconder o conteúdo da aba, mantenha assim */
-.menu {
-    display: none
+.opcao-pagamento input {
+    transform: scale(1.2);
 }
 
-body{
-    position: relative;
-    content: ""; 
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    z-index: -1;
-    overflow-x: hidden; 
-}
 
-.bgimg {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-image: url('img/wallpaper.jpg');
-    background-position: center;
-    min-height: 100%;
-    max-width: 100%;
-}
+
