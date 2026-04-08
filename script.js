@@ -18,11 +18,6 @@ function openMenu(evt, menuName) {
     if (evt) evt.currentTarget.className += " w3-red";
 }
 
-
-// ----------------------
-// CARRINHO
-// ----------------------
-
 function calcularTotal() {
     return carrinho.reduce((total, item) => {
         return total + (item.preco * item.quantidade);
@@ -107,13 +102,8 @@ function atualizarUIcarrinho() {
 }
 
 
-// ----------------------
-// EVENTOS (DOM CARREGADO)
-// ----------------------
-
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Adicionar ao carrinho
     document.querySelectorAll('.carrinho').forEach(button => {
         button.addEventListener('click', (event) => {
             const itemCard = event.target.closest('.item-card');
@@ -126,36 +116,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
             adicionarAoCarrinho(itemData);
         });
-        // botão para mostrar opções de pagamento
+        
 document.getElementById('btn-pagamento').addEventListener('click', () => {
     document.getElementById('pagamento-opcoes').style.display = 'block';
 });
     });
     
-    // Abrir carrinho
+ 
     document.getElementById('btn-ver-carrinho').addEventListener('click', () => {
     document.getElementById('carrinho-modal').style.display = 'block';
 
-    // reset tudo
+  
     document.getElementById('btn-finalizar-pedido').style.display = 'none';
     document.getElementById('pagamento-opcoes').style.display = 'none';
 
     document.querySelectorAll('input[name="pagamento"]').forEach(r => r.checked = false);
 });
     
-    // Fechar carrinho
+ 
     document.getElementById('btn-fechar-modal').addEventListener('click', () => {
         document.getElementById('carrinho-modal').style.display = 'none';
     });
     
-    // Fechar clicando fora
+    
     document.getElementById('carrinho-modal').addEventListener('click', (event) => {
         if (event.target.id === 'carrinho-modal') {
              document.getElementById('carrinho-modal').style.display = 'none';
         }
     });
 
-    // Mostrar botão finalizar ao escolher pagamento
+   
     const radiosPagamento = document.querySelectorAll('input[name="pagamento"]');
     const btnFinalizar = document.getElementById('btn-finalizar-pedido');
 
@@ -165,7 +155,7 @@ document.getElementById('btn-pagamento').addEventListener('click', () => {
         });
     });
 
-    // Finalizar pedido
+    
     document.getElementById('btn-finalizar-pedido').addEventListener('click', () => {
 
         const pagamentoSelecionado = document.querySelector('input[name="pagamento"]:checked');
@@ -184,13 +174,12 @@ document.getElementById('btn-pagamento').addEventListener('click', () => {
 
 });
 
-// BOTÃO OK (CONFIRMAÇÃO)
 document.getElementById('btn-fechar-confirmacao').addEventListener('click', () => {
 
-    // fecha o modal
+  
     document.getElementById('confirmacao-modal').style.display = 'none';
 
-    // rola a tela pro topo (efeito mais profissional)
+ 
     window.scrollTo({
         top: 0,
         behavior: 'smooth'
